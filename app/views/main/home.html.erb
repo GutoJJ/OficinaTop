@@ -1,0 +1,18 @@
+<p>Esta é a home page do site</p>
+
+<% if current_mecanico && current_mecanico.adminCode == 1 %>
+
+    <strong>
+        ADMIN
+    </strong>
+
+<% end %>
+
+<p>Email do mecânico logado: <%= current_mecanico.email %></p>
+
+
+<% if current_mecanico && current_mecanico.adminCode == 1 %>
+  <%= link_to "Register Mecanico", new_admin_mecanico_path, class: "button" %>
+<% end %>
+
+<%= link_to "Logout", destroy_mecanico_session_path, method: :delete %>

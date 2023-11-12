@@ -1,0 +1,15 @@
+<div class="main-login" style="background-image: url('<%= asset_path('bg-login.png') %>');">
+  <div class="blur">
+    <h1 class="nome-site">BRAVIA ⚙</h1>
+    <div class="login">
+      <h1>Log in</h1>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-log">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "Senha" %>
+          <%= f.submit "Log in", class: "entrarBtn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

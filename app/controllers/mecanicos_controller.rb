@@ -25,6 +25,6 @@ class MecanicosController < ApplicationController
     end
 
     def mecanico_params
-        params.require(:mecanico).permit(:email, :password)
+        params.require(:mecanico).permit(:email, :password, :nome, :telefone, :especialidade, :endereco)
     end
 end

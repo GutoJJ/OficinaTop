@@ -1,7 +1,17 @@
 <!-- app/views/mecanicos/new.html.erb -->
 <%= form_for @mecanico, url: admin_mecanicos_path do |f| %>
-    
+    <%= f.label :nome %>
+    <%= f.text_field :nome %>
 
+    <%= f.label :telefone %>
+    <%= f.text_field :telefone %>
+
+    <%= f.label :especialidade %>
+    <%= f.text_field :especialidade %>
+
+    <%= f.label :endereco %>
+    <%= f.text_field :endereco %>
+    
     <%= f.label :email %>
     <%= f.email_field :email %>
 

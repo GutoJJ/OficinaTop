@@ -1,18 +1,52 @@
-<p>Esta é a home page do site</p>
 
-<% if current_mecanico && current_mecanico.adminCode == 1 %>
-
-    <strong>
-        ADMIN
-    </strong>
-
-<% end %>
-
-<p>Email do mecânico logado: <%= current_mecanico.email %></p>
-
-
-<% if current_mecanico && current_mecanico.adminCode == 1 %>
-  <%= link_to "Register Mecanico", new_admin_mecanico_path, class: "button" %>
-<% end %>
-
-<%= link_to "Logout", destroy_mecanico_session_path, method: :delete %>
+<nav>
+      <div class="nav-top">
+        <div class="profile">
+            <%= image_tag("profile.svg", class: "logo")%>
+          <h1 class="nome"><%= current_mecanico.nome %></h1>
+        </div>
+        
+        <ul class="nav-links">
+            <div class="linha"></div>
+          <li>
+            <%= image_tag("prancheta.svg") %><a href="#"
+              >Ordens de serviço</a
+            >
+          </li>
+          <div class="linha"></div>
+          <li>
+            <%= image_tag("prancheta.svg") %><a href="#"
+              >Adicionar Cliente</a
+            >
+          </li>
+          <div class="linha"></div>
+          <li>
+            <%= image_tag("prancheta.svg") %><a href="#"
+              >Adicionar Peça</a
+            >
+          </li>
+          <div class="linha"></div>
+          <li>
+            <%= image_tag("prancheta.svg") %><a href="#"
+              >Adicionar Veículo</a
+            >
+          </li>
+          <% if current_mecanico && current_mecanico.adminCode == 1 %>
+            <div class="linha"></div>
+            <li>
+              <%= image_tag("prancheta.svg") %>
+            <%= link_to "Register Mecanico", new_admin_mecanico_path, class: "button" %>
+              
+            </li>
+          <% end %>
+          <div class="linha"></div>
+          <li>
+            <%= image_tag("prancheta.svg") %><%= link_to "Logout", destroy_mecanico_session_path, method: :delete, class: "logout" %>
+          </li>
+          <div class="linha"></div>
+        </ul>
+      </div>
+      <% if current_mecanico && current_mecanico.adminCode == 1 %>
+        <h1 class="adm">ADMIN</h1>
+      <% end %>
+    </nav>

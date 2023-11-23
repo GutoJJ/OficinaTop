@@ -1,52 +1,11 @@
-
-<nav>
-      <div class="nav-top">
-        <div class="profile">
-            <%= image_tag("profile.svg", class: "logo")%>
-          <h1 class="nome"><%= current_mecanico.nome %></h1>
+<%= render 'nav' %>
+    <main>
+      <div class="main-content">
+        <div class="main-top">
+          <h1>Ordens de Serviço</h1>
         </div>
-        
-        <ul class="nav-links">
-            <div class="linha"></div>
-          <li>
-            <%= image_tag("prancheta.svg") %><a href="#"
-              >Ordens de serviço</a
-            >
-          </li>
-          <div class="linha"></div>
-          <li>
-            <%= image_tag("prancheta.svg") %><a href="#"
-              >Adicionar Cliente</a
-            >
-          </li>
-          <div class="linha"></div>
-          <li>
-            <%= image_tag("prancheta.svg") %><a href="#"
-              >Adicionar Peça</a
-            >
-          </li>
-          <div class="linha"></div>
-          <li>
-            <%= image_tag("prancheta.svg") %><a href="#"
-              >Adicionar Veículo</a
-            >
-          </li>
-          <% if current_mecanico && current_mecanico.adminCode == 1 %>
-            <div class="linha"></div>
-            <li>
-              <%= image_tag("prancheta.svg") %>
-            <%= link_to "Register Mecanico", new_admin_mecanico_path, class: "button" %>
-              
-            </li>
-          <% end %>
-          <div class="linha"></div>
-          <li>
-            <%= image_tag("prancheta.svg") %><%= link_to "Logout", destroy_mecanico_session_path, method: :delete, class: "logout" %>
-          </li>
-          <div class="linha"></div>
-        </ul>
+        <button class="btn-add">+ Criar ordem de serviço</button>
+        <div class="main-info">
+        </div>
       </div>
-      <% if current_mecanico && current_mecanico.adminCode == 1 %>
-        <h1 class="adm">ADMIN</h1>
-      <% end %>
-    </nav>
+    </main>

@@ -1,0 +1,76 @@
+<nav class="nav">
+  <div class="nav-top">
+    <div class="profile">
+      <%= image_tag("profile.svg", class: "logo") %>
+      <h1 class="nome"><%= current_mecanico.nome %></h1>
+    </div>
+
+    <ul class="nav-links">
+      <div class="linha"></div>
+      <li class="stagger">
+        <%= image_tag("prancheta.svg") %>
+        <%= link_to "Ordens de Serviço", main_home_path, class: "button" %>
+      </li>
+      <div class="linha"></div>
+      <li class="stagger">
+        <%= image_tag("prancheta.svg") %>
+        <%= link_to "Clientes", clientes_path, class: "button" %>
+      </li>
+      <div class="linha"></div>
+      <li class="stagger">
+        <%= image_tag("prancheta.svg") %>
+        <a href="#">Peças</a>
+      </li>
+      <div class="linha"></div>
+      <li class="stagger">
+        <%= image_tag("prancheta.svg") %>
+        <a href="#">Veículos</a>
+      </li>
+      <% if current_mecanico && current_mecanico.adminCode == 1 %>
+      <div class="linha"></div>
+      <li class="stagger">
+        <%= image_tag("prancheta.svg") %>
+        <%= link_to "Registrar Mecânico", new_admin_mecanico_path, class: "button" %>
+      </li>
+      <% end %>
+      <div class="linha"></div>
+      <li class="stagger">
+        <%= image_tag("prancheta.svg") %>
+        <%= link_to "Logout", destroy_mecanico_session_path, method: :delete, class: "logout" %>
+      </li>
+      <div class="linha"></div>
+    </ul>
+  </div>
+  <% if current_mecanico && current_mecanico.adminCode == 1 %>
+  <h1 class="adm">ADMIN</h1>
+  <% end %>
+</nav>
+
+<script>
+  var flag = 1;
+  openNav = () => {
+    if (flag == 0) {
+      document.querySelector(".nav").style.left = "0";
+      setTimeout(() => {
+        document.querySelectorAll(".stagger").forEach(element => {
+          element.style.visibility = "visible";
+          element.style.display = "flex";
+        });
+      }, 200);
+      
+      flag = 1;
+    } else {
+      document.querySelector(".nav").style.left = "-100%";
+      setTimeout(() => {
+        document.querySelectorAll(".stagger").forEach(element => {
+          element.style.visibility = "";
+          element.style.display = "";
+        });
+      }, 600);
+      flag = 0;
+    }
+  }
+  openNav();
+</script>
+
+<%= image_tag ("hamb.svg"), class: "navBtn", onclick: "openNav()" %>

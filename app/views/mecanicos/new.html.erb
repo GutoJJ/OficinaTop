@@ -1,22 +1,23 @@
 <!-- app/views/mecanicos/new.html.erb -->
-<%= form_for @mecanico, url: admin_mecanicos_path do |f| %>
-    <%= f.label :nome %>
-    <%= f.text_field :nome %>
 
-    <%= f.label :telefone %>
-    <%= f.text_field :telefone %>
-
-    <%= f.label :especialidade %>
-    <%= f.text_field :especialidade %>
-
-    <%= f.label :endereco %>
-    <%= f.text_field :endereco %>
-    
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-
-    <%= f.submit "Register" %>
-<% end %>
+<%= render 'main/nav'%>
+<main>
+    <div class="main-content">
+        <div class="main-top add-mec">
+            <h1>Adicionar Mecânico</h1>
+        </div>
+        <div class="main-info bg-w">
+            <%= form_for @mecanico, url: admin_mecanicos_path do |f| %>
+                <div class="form-log">
+                    <%= f.text_field :nome, placeholder: "Nome" %>
+                    <%= f.email_field :email, placeholder: "Email" %>
+                    <%= f.text_field :especialidade, placeholder: "Especialidade" %>
+                    <%= f.text_field :telefone, placeholder: "Telefone" %>
+                    <%= f.text_field :endereco, placeholder: "Endereço" %>            
+                    <%= f.password_field :password, placeholder: "Senha" %>
+                    <%= f.submit "Register", class: "entrarBtn" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</main>

@@ -62,7 +62,7 @@ nav{
         margin: 0;
         width: 100vw;
         height: 100vh;
-        background: #ffffffc1;
+        background: #ffffffee;
         backdrop-filter: blur(35px);
     }
 }
@@ -154,10 +154,6 @@ main{
     min-height: 100vh;
     background: #EBEBEB;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
 }
 
 .btn-add{
@@ -188,12 +184,14 @@ main{
     width: 35px;
     aspect-ratio: 1/1;
     position: fixed;
-    top: 5px;
+    top: 7px;
     left:  50px;
     transition: .2s ease-in-out;
 }
 
-#new_mecanico{
+#new_mecanico,
+#new_cliente,
+#new_veiculo{
     width: 100%;
 }
 

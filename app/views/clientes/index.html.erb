@@ -1,11 +1,21 @@
-<%= render 'main/nav'%>
 <main>
-      <div class="main-content">
-        <div class="main-top">
-          <h1>Cliente</h1>
-        </div>
-        <button class="btn-add">+ Adicionar Cliente</button>
-        <div class="main-info">
-        </div>
-      </div>
-    </main>
+  <div class="main-content">
+    <div class="main-top">
+      <h1>Cliente</h1>
+    </div>
+    <%= link_to "+ Adicionar Cliente", new_cliente_path, class: "btn-add" %>
+    <div class="main-info">
+      <% @cliente.each do |cliente| %>
+        <%= link_to cliente_path(cliente), class: 'details-button' do %>
+          <div class="card-body">
+            <div class="status-line"></div>
+            <div class="card-info">
+              <%= image_tag("profile.svg", class: "logo") %>
+              <h1 class="card-nome"><%= cliente.nome%></h1>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</main>

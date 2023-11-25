@@ -1,0 +1,17 @@
+<main>
+    <div class="main-content">
+        <div class="main-top">
+            <h1>Veículos</h1>
+        </div>
+        <%= link_to "+ Adicionar Veículo", new_veiculo_path, class: "btn-add" %>
+        <div class="main-info">
+            <% @veiculo.each do |veiculo| %>
+                <div>
+                    <p><%= veiculo.placa %></p>
+                    <p><%= veiculo.modelo %></p>
+                    <p><%= veiculo.cliente.nome %></p> <!-- Show the name of the cliente -->
+                </div>
+            <% end %>
+        </div>
+    </div>
+</main>

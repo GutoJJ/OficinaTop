@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_032640) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_25_212218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clientes", force: :cascade do |t|
+    t.string "nome"
+    t.string "endereco"
+    t.string "email"
+    t.string "telefone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "mecanicos", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,4 +40,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_032640) do
     t.index ["reset_password_token"], name: "index_mecanicos_on_reset_password_token", unique: true
   end
 
+  create_table "veiculos", force: :cascade do |t|
+    t.string "placa"
+    t.text "descricao"
+    t.string "modelo"
+    t.string "marca"
+    t.integer "ano"
+    t.string "cor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "cliente_id", null: false
+    t.index ["cliente_id"], name: "index_veiculos_on_cliente_id"
+  end
+
+  add_foreign_key "veiculos", "clientes"
 end

@@ -1,0 +1,22 @@
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), :back, class: "voltar" %>
+
+<main>
+    <div class="main-content">
+        <div class="main-top add-mec">
+            <h1>Adicionar Veículo</h1>
+        </div>
+        <div class="main-info bg-w">
+            <%= form_for @veiculo, url: new_veiculo_path do |f| %>
+                <div class="form-log">
+                    <%= f.text_field :placa, placeholder: "Placa" %>
+                    <%= f.text_field :marca, placeholder: "Marca" %>
+                    <%= f.text_field :modelo, placeholder: "Modelo" %>
+                    <%= f.text_field :ano, placeholder: "Ano" %>
+                    <%= f.text_field :cor, placeholder: "Cor" %>
+                        <%= f.collection_select :cliente_id, Cliente.all, :id, :nome, prompt: "Select a Cliente" %>
+                    <%= f.submit "Adicionar", class: "entrarBtn" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</main>

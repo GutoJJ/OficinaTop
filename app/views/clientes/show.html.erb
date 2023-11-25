@@ -1,0 +1,18 @@
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), :back, class: "voltar" %>
+
+<div class="main-perfil">
+      <div class="perfil">
+        <div class="perfil-top">
+          <%= image_tag("profile.svg") %>
+          <div class="top-info">
+            <p class="nome"><%= @cliente.nome %></p>
+            <p class="email">Email: <%= @cliente.email %></p>
+            <p class="endereco">Endereço: <%= @cliente.endereco%> </p>
+            <p class="telefone">Telefone: <%= @cliente.telefone %></p>
+          </div>
+        </div>
+        <div class="perfil-bottom">
+          <h2>Veículos</h2>
+        </div>
+      </div>
+    </div>

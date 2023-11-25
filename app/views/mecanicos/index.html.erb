@@ -1,18 +1,27 @@
-<%= render 'main/nav'%>
 <main>
-  <div class="main-content">
-    <div class="main-top">
-      <h1>Mecânicos</h1>
-    </div>
-    <% if current_mecanico && current_mecanico.adminCode == 1 %>
-        <%= link_to "Registrar Mecânico", new_admin_mecanico_path, class: "btn-add" %>
-    <% end %>
-    <div class="main-info">
-        <div class="list-info">
+    <div class="main-content">
+        <div class="main-top">
+            <h1>Mecânicos</h1>
+        </div>
+        <% if current_mecanico && current_mecanico.adminCode == 1 %>
+            <%= link_to "Registrar Mecânico", new_admin_mecanico_path, class: "btn-add" %>
+        <% end %>
+        <div class="main-info">
             <% @mecanico.each do |mecanico| %>
-                <%= link_to "#{mecanico.nome}", mecanico_path(mecanico), class: 'details-button' %>
+                <%= link_to mecanico_path(mecanico), class: 'details-button' do %>
+                    <div class="card-body">
+                        <% if mecanico.adminCode == 1 %>
+                            <div class="status-line" style="background-color: blue;"></div>
+                        <% else %>
+                            <div class="status-line"></div>
+                        <% end %>
+                        <div class="card-info">
+                            <%= image_tag("profile.svg", class: "logo") %>
+                            <h1 class="card-nome"><%= mecanico.nome%></h1>
+                        </div>
+                    </div>
+                <% end %>
             <% end %>
         </div>
     </div>
-  </div>
 </main>

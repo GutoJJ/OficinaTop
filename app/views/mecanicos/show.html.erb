@@ -1,0 +1,10 @@
+<%= render 'main/nav'%>
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), :back, class: "voltar" %>
+
+<div class="main-show-mec">
+    <div class="main-show-mec-info">
+        <h1><%= @mecanico.nome %></h1>
+        <h3><%= @mecanico.telefone %></h3>
+        <h4><%= @mecanico.email %></h4>
+    </div>
+</div>

@@ -26,13 +26,22 @@
         <%= image_tag("prancheta.svg") %>
         <a href="#">Veículos</a>
       </li>
-      <% if current_mecanico && current_mecanico.adminCode == 1 %>
+      <%
+=begin%>
+ <% if current_mecanico && current_mecanico.adminCode == 1 %>
       <div class="linha"></div>
       <li class="stagger">
         <%= image_tag("prancheta.svg") %>
         <%= link_to "Registrar Mecânico", new_admin_mecanico_path, class: "button" %>
       </li>
-      <% end %>
+      <% end %> 
+<%
+=end%>
+      <div class="linha"></div>
+      <li class="stagger">
+        <%= image_tag("prancheta.svg") %>
+        <%= link_to "Mecânicos", mecanicos_path, class: "button" %>
+      </li>
       <div class="linha"></div>
       <li class="stagger">
         <%= image_tag("prancheta.svg") %>

@@ -1,0 +1,18 @@
+<%= render 'main/nav'%>
+<main>
+  <div class="main-content">
+    <div class="main-top">
+      <h1>Mecânicos</h1>
+    </div>
+    <% if current_mecanico && current_mecanico.adminCode == 1 %>
+        <%= link_to "Registrar Mecânico", new_admin_mecanico_path, class: "btn-add" %>
+    <% end %>
+    <div class="main-info">
+        <div class="list-info">
+            <% @mecanico.each do |mecanico| %>
+                <%= link_to "#{mecanico.nome}", mecanico_path(mecanico), class: 'details-button' %>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</main>

@@ -15,6 +15,14 @@ class MecanicosController < ApplicationController
         end
     end
 
+    def index
+        @mecanico = Mecanico.all
+    end
+
+    def show
+        @mecanico = Mecanico.find(params[:id])
+    end
+
 
     private
 

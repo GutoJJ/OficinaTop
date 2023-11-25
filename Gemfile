@@ -31,6 +31,8 @@ gem "jbuilder"
 
 gem "devise"
 
+gem 'inline_svg'
+
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 

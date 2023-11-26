@@ -1,3 +1,4 @@
+<%= render 'main/nav'%>
 <main>
     <div class="main-content">
         <div class="main-top">
@@ -12,8 +13,10 @@
                     <div class="card-body">
                         <% if mecanico.adminCode == 1 %>
                             <div class="status-line" style="background-color: blue;"></div>
-                        <% else %>
+                        <% elsif mecanico.ativarCode == 1 %>
                             <div class="status-line"></div>
+                        <% else %>
+                            <div class="status-line" style="background-color: red;"></div>
                         <% end %>
                         <div class="card-info">
                             <%= image_tag("profile.svg", class: "logo") %>

@@ -1,24 +1,32 @@
+    <%= render 'main/nav'%>
+    <%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), mecanicos_path, class: "voltar" %>
 
-<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), :back, class: "voltar" %>
-
-<div class="main-perfil">
-    <div class="perfil">
-        <div class="perfil-top">
-            <% if @mecanico.adminCode == 1 %>
-                <div class="status-line" style="background-color: blue;"></div>
-            <% else %>
-                <div class="status-line"></div>
+    <div class="main-perfil">
+        <div class="perfil">
+            <div class="perfil-top">
+                <% if @mecanico.adminCode == 1 %>
+                    <div class="status-line" style="background-color: blue;"></div>
+                <% elsif @mecanico.ativarCode == 1 %>
+                    <div class="status-line"></div>
+                <% else %>
+                    <div class="status-line" style="background-color: red;"></div>
+                <% end %>
+                <%= image_tag("profile.svg") %>
+                <div class="top-info">
+                    <p class="nome"><%= @mecanico.nome %></p>
+                    <p class="email">Email: <%= @mecanico.email %></p>
+                    <p class="endereco">Endereço: <%= @mecanico.endereco%> </p>
+                    <p class="telefone">Telefone: <%= @mecanico.telefone %></p>
+                </div>
+            </div>
+            <div class="perfil-bottom">
+            <% if current_mecanico.adminCode == 1 %>
+                <% if @mecanico.ativarCode == 1 %>
+                    <%= button_to 'Desativar', deactivate_mecanico_path(@mecanico), method: :post %>
+                <% else %>
+                    <%= button_to 'Ativar', deactivate_mecanico_path(@mecanico), method: :post %>
+                <% end %>
             <% end %>
-          <%= image_tag("profile.svg") %>
-          <div class="top-info">
-            <p class="nome"><%= @mecanico.nome %></p>
-            <p class="email">Email: <%= @mecanico.email %></p>
-            <p class="endereco">Endereço: <%= @mecanico.endereco%> </p>
-            <p class="telefone">Telefone: <%= @mecanico.telefone %></p>
-          </div>
-        </div>
-        <div class="perfil-bottom">
-          <h2>Veículos</h2>
-        </div>
+            </div>
       </div>
     </div>

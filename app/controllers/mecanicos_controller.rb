@@ -1,7 +1,7 @@
 class MecanicosController < ApplicationController
     before_action :authenticate_mecanico!
-    before_action :check_admin
-
+    before_action :check_admin, only: [:new, :create, :deactivate]
+  
     def new
         @mecanico = Mecanico.new
     end
@@ -22,6 +22,21 @@ class MecanicosController < ApplicationController
     def show
         @mecanico = Mecanico.find(params[:id])
     end
+
+    def deactivate
+        if current_mecanico.adminCode == 1
+          @mecanico = Mecanico.find(params[:id])
+          if @mecanico.ativarCode == 0
+            @mecanico.update(ativarCode: 1)
+            redirect_to @mecanico, notice: 'User was successfully activated.'
+          else
+            @mecanico.update(ativarCode: 0)
+            redirect_to @mecanico, notice: 'User was successfully deactivated.'
+          end
+        else
+          redirect_to @mecanico, alert: 'You are not authorized to perform this action.'
+        end
+      end
 
 
     private

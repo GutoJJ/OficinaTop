@@ -1,0 +1,14 @@
+<%= render 'main/nav'%>
+<main>
+    <div class="main-content">
+        <div class="main-top">
+            <h1>Peças</h1>
+        </div>
+        <%= link_to "+ Adicionar Peça", new_peca_path, class: "btn-add" %>
+        <div class="main-info">
+            <% @pecas.each do |peca| %>
+                <p><%= peca.nome %></p>
+            <% end %>
+        </div>
+    </div>
+</main>

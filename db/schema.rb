@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_26_004711) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_06_175303) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_004711) do
     t.string "telefone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "equipes", force: :cascade do |t|
+    t.string "nomeEquipe"
+    t.bigint "mecanico_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mecanico_id"], name: "index_equipes_on_mecanico_id"
+  end
+
+  create_table "equipes_mecanicos", id: false, force: :cascade do |t|
+    t.bigint "equipe_id", null: false
+    t.bigint "mecanico_id", null: false
+    t.index ["equipe_id", "mecanico_id"], name: "index_equipes_mecanicos_on_equipe_id_and_mecanico_id"
+    t.index ["mecanico_id", "equipe_id"], name: "index_equipes_mecanicos_on_mecanico_id_and_equipe_id"
   end
 
   create_table "mecanicos", force: :cascade do |t|
@@ -41,6 +56,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_004711) do
     t.index ["reset_password_token"], name: "index_mecanicos_on_reset_password_token", unique: true
   end
 
+  create_table "pecas", force: :cascade do |t|
+    t.string "nome"
+    t.decimal "preco"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "veiculos", force: :cascade do |t|
     t.string "placa"
     t.text "descricao"
@@ -54,5 +76,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_004711) do
     t.index ["cliente_id"], name: "index_veiculos_on_cliente_id"
   end
 
+  add_foreign_key "equipes", "mecanicos"
   add_foreign_key "veiculos", "clientes"
 end

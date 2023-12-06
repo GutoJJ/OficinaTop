@@ -79,7 +79,7 @@ nav{
 }
 
 .profile{
-    height: 90px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -229,4 +229,8 @@ li:nth-child(10) {
 
 li:nth-child(12) {
     animation-delay: 0.8s;
+}
+
+li:nth-child(14) {
+    animation-delay: 0.9s;
 }

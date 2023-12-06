@@ -1,0 +1,18 @@
+<%= render 'main/nav'%>
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), :back, class: "voltar" %>
+
+<main>
+    <div class="main-content">
+        <div class="main-top add-mec">
+            <h1>Criar Equipe</h1>
+        </div>
+        <div class="main-info bg-w">
+           <%= form_for @equipe do |f| %>
+                <%= f.text_field :nomeEquipe, placeholder: "Nome"%>
+                    <%= f.label :mecanico_ids, "Mecanicos" %>
+                    <%= f.collection_check_boxes :mecanico_ids, Mecanico.all, :id, :nome %>
+                <%= f.submit "Criar", class: "entrarBtn" %>
+            <% end %>
+        </div>
+    </div>
+</main>

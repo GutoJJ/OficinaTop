@@ -1,0 +1,17 @@
+<%= render 'main/nav'%>
+<main>
+  <div class="main-content">
+    <div class="main-top">
+      <h1>Equipes</h1>
+    </div>
+    <%= link_to "+ Criar Equipe", new_equipe_path, class: "btn-add" %>
+    <div class="main-info">
+      <% @equipes.each do |equipe| %>
+        <div class="equipe">
+          <h2><%= equipe.nomeEquipe %></h2>
+          <%= link_to "Detalhes", equipe_path(equipe), class: "btn-details" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

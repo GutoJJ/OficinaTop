@@ -5,11 +5,11 @@
         <div class="perfil">
             <div class="perfil-top">
                 <% if @mecanico.adminCode == 1 %>
-                    <div class="status-line" style="background-color: blue;"></div>
+                    <div class="status-perfil" style="background-color: blue;"></div>
                 <% elsif @mecanico.ativarCode == 1 %>
-                    <div class="status-line"></div>
+                    <div class="status-perfil"></div>
                 <% else %>
-                    <div class="status-line" style="background-color: red;"></div>
+                    <div class="status-perfil" style="background-color: red;"></div>
                 <% end %>
                 <%= image_tag("profile.svg") %>
                 <div class="top-info">
@@ -21,18 +21,24 @@
             </div>
             <div class="perfil-bottom">
             <% if current_mecanico.adminCode == 1 && @mecanico.adminCode == 0 %>
+            <div class="button-mec">
                 <% if @mecanico.ativarCode == 1 %>
-                    <%= button_to 'Desativar', deactivate_mecanico_path(@mecanico), method: :post %>
+                    <%= button_to 'Desativar', deactivate_mecanico_path(@mecanico), method: :post, class: 'editar-button red mec-top' %>
                 <% else %>
-                    <%= button_to 'Ativar', deactivate_mecanico_path(@mecanico), method: :post %>
+                    <%= button_to 'Ativar', deactivate_mecanico_path(@mecanico), method: :post, class: 'editar-button green mec-top' %>
                 <% end %>
-            <% end %>
-            <div class="equipes">
-                <h2>Equipes do Mecânico</h2>
-                <% @mecanico.equipes.each do |equipe| %>
-                    <p><%= equipe.nomeEquipe %></p>
-                <% end %>
+                <div class="button-container">
+                    <%= link_to 'Edit', edit_mecanico_path(@mecanico), class: 'editar-button' %>
+                    <%= button_to "Deletar", mecanico_path(@mecanico), method: :delete, class: "editar-button red" %>
+                </div>
             </div>
+            <% end %>
+                <div class="equipes">
+                    <h2>Equipes do Mecânico</h2>
+                    <% @mecanico.equipes.each do |equipe| %>
+                        <p><%= equipe.nomeEquipe %></p>
+                    <% end %>
+                </div>
             </div>
       </div>
     </div>

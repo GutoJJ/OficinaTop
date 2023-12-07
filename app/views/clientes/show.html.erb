@@ -1,19 +1,43 @@
     <%= render 'main/nav'%>
-<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), :back, class: "voltar" %>
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), clientes_path, class: "voltar" %>
 
 <div class="main-perfil">
-      <div class="perfil">
-        <div class="perfil-top">
-          <%= image_tag("profile.svg") %>
-          <div class="top-info">
-            <p class="nome"><%= @cliente.nome %></p>
-            <p class="email">Email: <%= @cliente.email %></p>
-            <p class="endereco">Endereço: <%= @cliente.endereco%> </p>
-            <p class="telefone">Telefone: <%= @cliente.telefone %></p>
-          </div>
-        </div>
-        <div class="perfil-bottom">
-          <h2>Veículos</h2>
-        </div>
+  <div class="perfil">
+    <div class="perfil-top">
+      <%= image_tag("profile.svg") %>
+      <div class="top-info">
+        <p class="nome"><%= @cliente.nome %></p>
+        <p class="email"><strong>Email:</strong> <%= @cliente.email %></p>
+        <p class="endereco"><strong>Endereço:</strong> <%= @cliente.endereco%> </p>
+        <p class="telefone"><strong>Telefone:</strong> <%= @cliente.telefone %></p>
       </div>
     </div>
+    <div class="button-container">
+      <%= link_to "Editar", edit_cliente_path(@cliente), class: "editar-button" %>
+      <%= button_to "Deletar", cliente_path(@cliente), method: :delete, class: "editar-button red" %>
+    </div>
+    <main class="perfil-bottom">
+      <div class="main-content">
+        <div class="main-top">
+          <h1>Veículos</h1>
+        </div>
+        <div class="main-info">
+          <% @cliente.veiculos.each do |veiculo| %>
+           <%= link_to veiculo_path(veiculo), class: 'details-button' do %>
+                <div class="card-body">
+                    <div class="status-line"></div>
+                    <div class="card-info team">
+                        <%= image_tag("car.svg", class: "logo") %>
+                        <div class="carro-placa">
+                            <h1 class="card-nome"><%= veiculo.placa %></h1>
+                            <p class="nome-dono"><%= @cliente.nome %></p>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

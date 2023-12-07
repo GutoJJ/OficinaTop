@@ -4,10 +4,10 @@
 <main>
     <div class="main-content">
         <div class="main-top add-mec">
-            <h1>Criar Equipe</h1>
+            <h1>Editar Equipe</h1>
         </div>
         <div class="main-info bg-w">
-           <%= form_for @equipe do |f| %>
+           <%= form_for @equipe, url: equipe_path(@equipe), method: :patch do |f| %>
            <div class="form-log">
                 <%= f.text_field :nomeEquipe, placeholder: "Nome"%>
                 <div class="nomes-mec">
@@ -16,7 +16,7 @@
                         <%= b.label { b.text } %>
                     <% end %>
                 </div>
-                <%= f.submit "Criar", class: "entrarBtn" %>
+                <%= f.submit "Atualizar", class: "entrarBtn" %>
             </div>
             <% end %>
         </div>

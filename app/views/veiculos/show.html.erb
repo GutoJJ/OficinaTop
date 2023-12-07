@@ -1,0 +1,44 @@
+    <%= render 'main/nav'%>
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), veiculos_path, class: "voltar" %>
+
+<div class="main-perfil">
+  <div class="perfil">
+    <div class="perfil-top">
+      <%= image_tag("car.svg") %>
+      <div class="top-info">
+        <p class="nome"><%= @veiculo.placa %></p>
+        <p class="email"><strong>Modelo:</strong> <%= @veiculo.modelo %></p>
+        <p class="email"><strong>Marca:</strong> <%= @veiculo.marca %></p>
+        <p class="email"><strong>Cor:</strong> <%= @veiculo.cor %></p>
+      </div>
+    </div>
+    <div class="button-container">
+        <%= link_to "Editar", edit_veiculo_path(@veiculo), class: "editar-button" %>
+        <%= button_to "Deletar", veiculo_path(@veiculo), method: :delete, class: "editar-button red" %>
+    </div>
+    <div class= "perfil-top dono">
+        <p class="nome"> Dono do Veículo </p>
+    </div>
+
+    <div class="perfil-top">
+      <%= image_tag("profile.svg") %>
+      <div class="top-info">
+        <p class="nome"><%= @veiculo.cliente.nome %></p>
+        <p class="email"><strong>Email:</strong> <%= @veiculo.cliente.email %></p>
+        <p class="endereco"><strong>Endereço:</strong> <%= @veiculo.cliente.endereco%> </p>
+        <p class="telefone"><strong>Telefone:</strong> <%= @veiculo.cliente.telefone %></p>
+      </div>
+    </div>
+    
+    <main class="perfil-bottom">
+      <div class="main-content">
+        <div class="main-top">
+          <h1>Ordens de Serviço</h1>
+        </div>
+        <div class="main-info">
+          
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

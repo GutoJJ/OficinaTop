@@ -1,18 +1,25 @@
-    <%= render 'main/nav'%>
-<main>
-    <div class="main-content">
-        <div class="main-top">
-            <h1>Veículos</h1>
+    <%= render 'main/nav' %>
+    <main>
+        <div class="main-content">
+            <div class="main-top">
+                <h1>Veículos</h1>
+            </div>
+            <%= link_to "+ Adicionar Veículo", new_veiculo_path, class: "btn-add" %>
+            <div class="main-info">
+                <% @veiculo.each do |veiculo| %>
+                    <%= link_to veiculo_path(veiculo), class: 'details-button' do %>
+                        <div class="card-body">
+                            <div class="status-line"></div>
+                            <div class="card-info team">
+                                <%= image_tag("car.svg", class: "logo") %>
+                                <div class="carro-placa">
+                                    <h1 class="card-nome"><%= veiculo.placa %></h1>
+                                    <p class="nome-dono"><%= veiculo.cliente.nome %></p>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
         </div>
-        <%= link_to "+ Adicionar Veículo", new_veiculo_path, class: "btn-add" %>
-        <div class="main-info">
-            <% @veiculo.each do |veiculo| %>
-                <div>
-                    <p><%= veiculo.placa %></p>
-                    <p><%= veiculo.modelo %></p>
-                    <p><%= veiculo.cliente.nome %></p> <!-- Show the name of the cliente -->
-                </div>
-            <% end %>
-        </div>
-    </div>
-</main>
+    </main>

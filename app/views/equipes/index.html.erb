@@ -7,10 +7,15 @@
     <%= link_to "+ Criar Equipe", new_equipe_path, class: "btn-add" %>
     <div class="main-info">
       <% @equipes.each do |equipe| %>
-        <div class="equipe">
-          <h2><%= equipe.nomeEquipe %></h2>
-          <%= link_to "Detalhes", equipe_path(equipe), class: "btn-details" %>
-        </div>
+        <%= link_to equipe_path(equipe), class: 'details-button' do %>
+          <div class="card-body">
+            <div class="status-line"></div>
+            <div class="card-info team">
+              <%= image_tag("team.svg", class: "logo") %>
+              <h1 class="card-nome"><%= equipe.nomeEquipe%></h1>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

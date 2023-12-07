@@ -1,5 +1,5 @@
 class ClientesController < ApplicationController
-
+    
     def new
         @cliente = Cliente.new
     end
@@ -19,6 +19,25 @@ class ClientesController < ApplicationController
 
     def show
         @cliente = Cliente.find(params[:id])
+    end
+
+    def edit
+        @cliente = Cliente.find(params[:id])
+    end
+
+    def update
+        @cliente = Cliente.find(params[:id])
+        if @cliente.update(cliente_params)
+            redirect_to @cliente
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @cliente = Cliente.find(params[:id])
+        @cliente.destroy
+        redirect_to clientes_path
     end
 
     private

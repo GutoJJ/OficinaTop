@@ -9,29 +9,34 @@ Rails.application.routes.draw do
       get '/mecanicos', to: 'mecanicos#index', as: 'mecanicos'
 
       resources :mecanicos, only: [:show]
+      resources :mecanicos
       resources :mecanicos do
         post 'deactivate', on: :member
       end
 
       get '/clientes', to: 'clientes#index', as: 'clientes'
       get '/clientes/new', to: 'clientes#new', as: 'new_cliente'
-      post '/clientes/new', to: 'clientes#create', as: 'create_cliente'
+      post '/clientes', to: 'clientes#create', as: 'create_cliente'
       resources :clientes, only: [:show]
+      resources :clientes
 
       get '/equipes', to: 'equipes#index', as: 'equipes'
       get '/equipes/new', to: 'equipes#new', as: 'new_equipe'
       post '/equipes', to: 'equipes#create', as: 'create_equipe'
       resources :equipes, only: [:show]
+      resources :equipes 
 
       get '/veiculos', to: 'veiculos#index', as: 'veiculos'
       get '/veiculos/new', to: 'veiculos#new', as: 'new_veiculo'
       post '/veiculos/new', to: 'veiculos#create', as: 'create_veiculo'
       resources :veiculos, only: [:show]
+      resources :veiculos
 
       get '/pecas', to: 'pecas#index', as: 'pecas'
       get '/pecas/new', to: 'pecas#new', as: 'new_peca'
       post '/pecas', to: 'pecas#create', as: 'create_peca'
       resources :pecas, only: [:show]
+      resources :pecas
 
       get '/home', to: 'main#home', as: 'main_home'
       get '/sign_out', to: 'devise/sessions#destroy', as: 'sign_out'

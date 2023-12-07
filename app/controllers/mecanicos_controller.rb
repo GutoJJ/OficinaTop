@@ -1,6 +1,6 @@
 class MecanicosController < ApplicationController
     before_action :authenticate_mecanico!
-    before_action :check_admin, only: [:new, :create, :deactivate]
+    before_action :check_admin, only: [:new, :create, :deactivate, :edit, :destroy, :update]
   
     def new
         @mecanico = Mecanico.new
@@ -23,6 +23,19 @@ class MecanicosController < ApplicationController
         @mecanico = Mecanico.find(params[:id])
     end
 
+    def edit
+        @mecanico = Mecanico.find(params[:id])
+    end
+
+    def update
+        @mecanico = Mecanico.find(params[:id])
+        if @mecanico.update(mecanico_params)
+          redirect_to @mecanico, notice: 'Mecanico was successfully updated.'
+        else
+          render :edit
+        end
+      end
+
     def deactivate
         if current_mecanico.adminCode == 1
           @mecanico = Mecanico.find(params[:id])
@@ -38,13 +51,10 @@ class MecanicosController < ApplicationController
         end
       end
 
-
-    private
-
-    def check_admin
-        unless current_mecanico.adminCode == 1
-            redirect_to '/', alert: 'Only admins can access this page.'
-        end
+    def destroy
+        @mecanico = Mecanico.find(params[:id])
+        @mecanico.destroy
+        redirect_to mecanicos_path
     end
 
     def mecanico_params

@@ -186,8 +186,12 @@ main{
     aspect-ratio: 1/1;
     position: fixed;
     top: 7px;
-    left:  50px;
+    left:  90px;
     transition: .2s ease-in-out;
+}
+
+.home{
+    left: 50px;
 }
 
 #new_mecanico,

@@ -33,12 +33,26 @@
                 </div>
             </div>
             <% end %>
-                <div class="equipes">
-                    <h2>Equipes do Mecânico</h2>
-                    <% @mecanico.equipes.each do |equipe| %>
-                        <p><%= equipe.nomeEquipe %></p>
-                    <% end %>
-                </div>
+                <main class="perfil-bottom">
+                 <div class="main-content">
+                   <div class="main-top">
+                     <h1>Equipes do Mecânico</h1>
+                   </div>
+                   <div class="main-info">
+                     <% @mecanico.equipes.each do |equipe|  %>
+                      <%= link_to equipe_path(equipe), class: 'details-button' do %>
+                           <div class="card-body">
+                               <div class="status-line"></div>
+                               <div class="card-info team">
+                                   <%= image_tag("team.svg", class: "logo") %>
+                                   <h1 class="card-nome"><%= equipe.nomeEquipe %></h1>
+                               </div>
+                           </div>
+                       <% end %>
+                     <% end %>
+                   </div>
+                 </div>
+                </main>
             </div>
       </div>
     </div>

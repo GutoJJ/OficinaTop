@@ -1,5 +1,5 @@
 class ClientesController < ApplicationController
-    
+
     def new
         @cliente = Cliente.new
     end
@@ -33,6 +33,12 @@ class ClientesController < ApplicationController
             render :edit
         end
     end
+
+    def veiculos
+        @cliente = Cliente.find(params[:id])
+        @veiculos = @cliente.veiculos
+        render json: @veiculos
+      end
 
     def destroy
         @cliente = Cliente.find(params[:id])

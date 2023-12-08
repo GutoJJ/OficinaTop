@@ -1,0 +1,13 @@
+<p>
+  ID: <%= @ordem.id %><br>
+  Descrição: <%= @ordem.descricao %><br>
+  Previsão: <%= @ordem.previsao %><br>
+  Cliente: <%= @ordem.cliente.nome %><br>
+  Veículo: <%= @ordem.veiculo.placa %><br>
+  Equipe: <%= @ordem.equipe.nomeEquipe %><br>
+  Peças: 
+  <% @ordem.pecas.each do |peca| %>
+    <%= peca.nome %> - R$ <%= peca.preco %><br>
+  <% end %>
+  Valor: <%= @ordem.valor %>
+</p>

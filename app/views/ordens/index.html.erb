@@ -1,0 +1,17 @@
+<%= render 'main/nav'%>
+<main>
+  <div class="main-content">
+    <div class="main-top">
+      <h1>Ordens de Serviço</h1>
+    </div>
+    <%= link_to "+ Criar Ordem de serviço", new_ordem_path, class: "btn-add" %>
+    <div class="main-info">
+      <% @ordem.each do |ordem| %>
+        <div class="ordem">
+          <p><%= ordem.descricao %></p>
+          <%= link_to "Ver detalhes", "/ordens/#{ordem.id}", class: "btn-details" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

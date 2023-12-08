@@ -9,7 +9,7 @@
       <div class="linha"></div>
       <li class="stagger">
         <%= image_tag("prancheta.svg") %>
-        <%= link_to "Ordens de Serviço", main_home_path, class: "button" %>
+        <%= link_to "Ordens de Serviço", ordens_path, class: "button" %>
       </li>
       <div class="linha"></div>
       <li class="stagger">
@@ -28,7 +28,7 @@
       </li>
       <div class="linha"></div>
       <li class="stagger">
-        <%= image_tag("prancheta.svg") %>
+        <%= image_tag("profile.svg") %>
         <%= link_to "Mecânicos", mecanicos_path, class: "button" %>
       </li>
       <div class="linha"></div>
@@ -38,14 +38,14 @@
       </li>
       <div class="linha"></div>
       <li class="stagger">
-        <%= image_tag("prancheta.svg") %>
+        <%= image_tag("GoBack.svg") %>
         <%= link_to "Logout", sign_out_path, method: :delete%>
       </li>
       <div class="linha"></div>
     </ul>
   </div>
   <% if current_mecanico && current_mecanico.adminCode == 1 %>
-  <h1 class="adm">ADMIN</h1>
+    <h1 class="adm">ADMIN</h1>
   <% end %>
 </nav>
 
@@ -77,3 +77,4 @@
 </script>
 
 <%= image_tag ("hamb.svg"), class: "navBtn", onclick: "openNav()" %>
+<%= link_to inline_svg_tag('home.svg', size: '14x14'), main_home_path, class: "voltar home" %>

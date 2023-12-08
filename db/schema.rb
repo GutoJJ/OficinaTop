@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_06_175303) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_150156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,27 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_175303) do
     t.index ["reset_password_token"], name: "index_mecanicos_on_reset_password_token", unique: true
   end
 
+  create_table "ordems", force: :cascade do |t|
+    t.text "descricao"
+    t.date "data_comeco"
+    t.date "data_termino"
+    t.date "previsao"
+    t.decimal "valor"
+    t.bigint "cliente_id", null: false
+    t.bigint "equipe_id", null: false
+    t.bigint "veiculo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_ordems_on_cliente_id"
+    t.index ["equipe_id"], name: "index_ordems_on_equipe_id"
+    t.index ["veiculo_id"], name: "index_ordems_on_veiculo_id"
+  end
+
+  create_table "ordems_pecas", id: false, force: :cascade do |t|
+    t.bigint "ordem_id", null: false
+    t.bigint "peca_id", null: false
+  end
+
   create_table "pecas", force: :cascade do |t|
     t.string "nome"
     t.decimal "preco"
@@ -77,5 +98,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_175303) do
   end
 
   add_foreign_key "equipes", "mecanicos"
+  add_foreign_key "ordems", "clientes"
+  add_foreign_key "ordems", "equipes"
+  add_foreign_key "ordems", "veiculos"
   add_foreign_key "veiculos", "clientes"
 end

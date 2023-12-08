@@ -38,13 +38,15 @@ Rails.application.routes.draw do
       get '/pecas', to: 'pecas#index', as: 'pecas'
       get '/pecas/new', to: 'pecas#new', as: 'new_peca'
       post '/pecas', to: 'pecas#create', as: 'create_peca'
+      delete '/pecas/:id', to: 'pecas#destroy', as: 'delete_peca'
       resources :pecas
 
       get '/ordens', to: 'ordens#index', as: 'ordens'
       get '/ordens/new', to: 'ordens#new', as: 'new_ordem'
+      get '/ordens/:id', to: 'ordens#show', as: 'show_ordem'
       post '/ordens', to: 'ordens#create', as: 'create_ordem'
       patch '/ordens/:id', to: 'ordens#update', as: 'update_ordem'
-      get '/ordens/:id', to: 'ordens#show', as: 'show_ordem'
+      delete '/ordens/:id', to: 'ordens#destroy', as: 'delete_ordem'
       resources :ordens
 
       get '/home', to: 'main#home', as: 'main_home'

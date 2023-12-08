@@ -1,16 +1,66 @@
-<p>
-  ID: <%= @ordem.id %><br>
-  Descrição: <%= @ordem.descricao %><br>
-  Previsão: <%= @ordem.previsao %><br>
-  Cliente: <%= @ordem.cliente.nome %><br>
-  Veículo: <%= @ordem.veiculo.placa %><br>
-  Equipe: <%= @ordem.equipe.nomeEquipe %><br>
-  Peças: 
-  <% @ordem.pecas.each do |peca| %>
-    <%= peca.nome %> - R$ <%= peca.preco %><br>
-  <% end %>
-  Valor: <%= @ordem.valor %>
-</p>
+<%= render 'main/nav'%>
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), ordens_path, class: "voltar" %>
 
-<%= link_to "Editar Ordem", "/ordens/#{@ordem.id}/edit" %>
+<div class="main-perfil">
+  <div class="perfil">
+<h1 class="editar-button desc">Descrição: <%= @ordem.descricao %></h1>
+<div class = "button-container">
+  <h1 class="editar-button">Previsão: <%= @ordem.previsao %></h1>
+    <h1 class="editar-button">Valor: R$ <%= @ordem.valor %></h1>
+</div>
+    <div class="perfil-top">
+      <%= image_tag("car.svg") %>
+      <div class="top-info">
+        <p class="nome"><%= @ordem.veiculo.placa %></p>
+        <p class="email"><strong>Modelo:</strong> <%= @ordem.veiculo.modelo %></p>
+        <p class="email"><strong>Marca:</strong> <%= @ordem.veiculo.marca %></p>
+        <p class="email"><strong>Cor:</strong> <%= @ordem.veiculo.cor %></p>
+      </div>
+    </div>
+    <div class="button-container">
+        <%= link_to "Editar", "/ordens/#{@ordem.id}/edit", class: "editar-button" %>
+        <%= button_to "Deletar", delete_ordem_path(@ordem), method: :delete, class: "editar-button red" %>
+    </div>
+    <div class= "perfil-top dono">
+        <p class="nome"> Peças do Veículo </p>
+    </div>
+
+    <% @ordem.pecas.each do |peca| %>
+            <div class="perfil-top">
+                <%= image_tag("nut.svg") %>
+                <div class="top-info">
+                    <p class="nome"><%= peca.nome %></p>
+                    <p class="telefone"><strong>Preço:</strong> <%= peca.preco %></p>
+                </div>
+            </div>
+    <% end %>
+
+    <div class= "perfil-top dono">
+        <p class="nome"> Dono do Veículo </p>
+    </div>
+
+    <div class="perfil-top">
+      <%= image_tag("profile.svg") %>
+      <div class="top-info">
+        <p class="nome"><%= @ordem.cliente.nome %></p>
+        <p class="email"><strong>Email:</strong> <%= @ordem.cliente.email %></p>
+        <p class="endereco"><strong>Endereço:</strong> <%= @ordem.cliente.endereco%> </p>
+        <p class="telefone"><strong>Telefone:</strong> <%= @ordem.cliente.telefone %></p>
+      </div>
+    </div>
+
+    <div class= "perfil-top dono">
+        <p class="nome"> Equipe Responsável </p>
+    </div>
+
+    <div class="perfil-top">
+      <%= image_tag("team.svg") %>
+      <div class="top-info">
+        <p class="nome"><%= @ordem.equipe.nomeEquipe %></p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
 

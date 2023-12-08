@@ -5,6 +5,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 2vh;
+    padding-bottom: 3vh;
 }
 
 .main-perfil{
@@ -15,6 +16,7 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 60px;
+    
 }
 
 .perfil-top{
@@ -123,6 +125,12 @@
 
 .red:hover{
     background: #8f2e2e;
+}
+
+.desc{
+    width: 100%;
+    min-height: 65px;
+    height: fit-content;
 }
 
 @media(max-width: 800px){

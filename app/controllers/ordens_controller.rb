@@ -19,7 +19,7 @@ class OrdensController < ApplicationController
     def create
       @ordem = Ordem.new(ordem_params)
       if @ordem.save
-        redirect_to '/ordens'
+        redirect_to show_ordem_path(@ordem)
       else
         render :new
       end
@@ -28,7 +28,7 @@ class OrdensController < ApplicationController
     def update
       @ordem = Ordem.find(params[:id])
       if @ordem.update(ordem_params)
-        redirect_to @ordem
+        redirect_to show_ordem_path(@ordem)
       else
         render :edit
       end

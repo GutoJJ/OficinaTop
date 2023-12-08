@@ -43,6 +43,8 @@ Rails.application.routes.draw do
       get '/ordens', to: 'ordens#index', as: 'ordens'
       get '/ordens/new', to: 'ordens#new', as: 'new_ordem'
       post '/ordens', to: 'ordens#create', as: 'create_ordem'
+      patch '/ordens/:id', to: 'ordens#update', as: 'update_ordem'
+      get '/ordens/:id', to: 'ordens#show', as: 'show_ordem'
       resources :ordens
 
       get '/home', to: 'main#home', as: 'main_home'

@@ -1,4 +1,4 @@
-<%= render 'main/nav'%>
+<%= render 'main/nav' %>
 <main>
   <div class="main-content">
     <div class="main-top">
@@ -7,10 +7,21 @@
     <%= link_to "+ Criar Ordem de serviço", new_ordem_path, class: "btn-add" %>
     <div class="main-info">
       <% @ordem.each do |ordem| %>
-        <div class="ordem">
-          <p><%= ordem.descricao %></p>
-          <%= link_to "Ver detalhes", "/ordens/#{ordem.id}", class: "btn-details" %>
-        </div>
+        <%= link_to "/ordens/#{ordem.id}" do %>
+          <div class="card-body">
+            <div class="status-line"></div>
+            <div class="card-info team">
+              <%= image_tag("car.svg", class: "logo") %>
+              <div class="carro-placa">
+                <h1 class="card-nome"><%= ordem.veiculo.placa %></h1>
+                <p class="nome-dono"><%= ordem.cliente.nome %></p>
+              </div>
+              <div class="carro-placa">
+                <h1 class="card-nome"><%= ordem.equipe.nomeEquipe %></h1>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

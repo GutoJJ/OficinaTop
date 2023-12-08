@@ -1,0 +1,120 @@
+<%= render 'main/nav'%>
+<%= link_to inline_svg_tag('GoBack.svg', size: '14x14'), :back, class: "voltar" %>
+
+<main>
+    <div class="main-content">
+        <div class="main-top add-mec">
+            <h1>Editar ordem de serviço</h1>
+        </div>
+        <div class="main-info bg-w">
+           <%= form_for @ordem, url: update_ordem_path(@ordem) , method: :patch do |f| %>
+                <div class="form-group">
+                    <%= f.label :descricao %>
+                    <%= f.text_field :descricao %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :data_comeco %>
+                    <%= f.date_select :data_comeco %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :previsao %>
+                    <%= f.date_select :previsao %>
+                </div>
+                
+                <div class="form-group">
+                   <%= f.label :cliente_id %>
+                   <%= f.collection_select :cliente_id, Cliente.all, :id, :nome, prompt: "Selecione um cliente" %>
+                </div>
+
+                <div class="form-group" id="veiculos-group">
+                   <%= f.label :veiculo_id %>
+                   <%= f.collection_select :veiculo_id, [], :id, :placa, prompt: "Selecione um cliente primeiro" %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :equipe_id %>
+                    <%= f.collection_select :equipe_id, Equipe.all, :id, :nomeEquipe %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :peca_ids, "Pecas" %>
+                  <% Peca.all.each do |peca| %>
+                    <div class="checkbox">
+                      <%= f.check_box :peca_ids, { multiple: true }, peca.id, nil %>
+                      <%= label_tag "ordem_peca_ids_#{peca.id}", "#{peca.nome} - R$ #{peca.preco}",data: { preco: peca.preco }  %>
+                    </div>
+                  <% end %>
+                </div>
+
+
+                <div class="form-group">
+                    <%= f.label :valor %>
+                    <%= f.number_field :valor, step: 1 %>
+                </div>
+
+                <%= f.submit "Criar", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const clienteSelect = document.getElementById('ordem_cliente_id');
+  const veiculoSelect = document.getElementById('ordem_veiculo_id');
+  const veiculosGroup = document.getElementById('veiculos-group');
+  const pecasCheckboxes = document.querySelectorAll('input[name="ordem[peca_ids][]"]');
+  const valorInput = document.getElementById('ordem_valor');
+
+  clienteSelect.addEventListener('change', function() {
+    const selectedClientId = clienteSelect.value;
+    fetch(`/clientes/${selectedClientId}/veiculos`)
+      .then(response => response.json())
+      .then(vehicles => {
+        veiculoSelect.innerHTML = '<option value="">Selecione um Veículo</option>';
+        vehicles.forEach(vehicle => {
+          const option = document.createElement('option');
+          option.value = vehicle.id;
+          option.text = vehicle.placa;
+          veiculoSelect.appendChild(option);
+        });
+      });
+  });
+
+  function updateValorTotal() {
+    console.log('Atualizando valor total...');
+    let valorTotal = 0;
+    pecasCheckboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+        const precoPecaSpan = document.querySelector(`label[for="ordem_peca_ids_${checkbox.value}"]`);
+        console.log(`Preço da peça ${checkbox.value}: ${precoPecaSpan}`)
+        if (precoPecaSpan) {
+          const precoPeca = parseFloat(precoPecaSpan.dataset.preco || 0);
+          console.log(`Preço da peça ${checkbox.value}: ${precoPeca}`);
+          valorTotal += precoPeca;
+        }
+      }
+    });
+    console.log(`Novo valor total: ${valorTotal}`);
+    valorInput.value = valorTotal.toFixed(2);
+  }
+
+  pecasCheckboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      console.log(`Checkbox ${checkbox.value} alterado.`);
+      updateValorTotal();
+    });
+  });
+
+  document.querySelectorAll('label[for^="ordem_peca_ids_"]').forEach(function(label) {
+    label.addEventListener('click', function() {
+      console.log(`Rótulo ${label.htmlFor} clicado.`);
+      const checkbox = document.querySelector(`input[name="ordem[peca_ids][]"][value="${label.htmlFor.split('_')[2]}"]`);
+      if (checkbox) {
+        checkbox.checked = !checkbox.checked;
+        checkbox.dispatchEvent(new Event('change')); 
+      }
+    });
+  });
+});
+</script>
